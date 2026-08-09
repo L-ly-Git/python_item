@@ -3,7 +3,7 @@ import json
 
 app = Flask(__name__)
 
-with open('data/salary.json', 'r',encoding="utf-8") as f:
+with open('data/salary.json', 'r', encoding="utf-8") as f:
     data = f.read()
 
 
@@ -26,7 +26,7 @@ def hello_delete(name):
     for sal in salary_list:
         if sal['name'] == name:
             salary_list.remove(sal)
-    with open('data/salary.json', 'w',encoding="utf-8") as f:
+    with open('data/salary.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(salary_list))
     return render_template("admin.html",salary_list=salary_list)
 
@@ -40,12 +40,12 @@ def hello_change(name):
 def hello_changed(name):
     for sal in salary_list:
         if sal['name'] == name:
-            print(name)
+            print(name)git rm --cached -r .idea
             sal['name'] = request.form['name']
             sal['department'] = request.form['department']
             sal['salary'] = request.form['salary']
             sal['position'] = request.form['position']
-    with open('data/salary.json', 'w',encoding="utf-8") as f:
+    with open('data/salary.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(salary_list))
     return render_template('admin.html',salary_list=salary_list)
 
@@ -60,7 +60,7 @@ def hello_add2():
     position = request.form['position']
     salary = request.form['salary']
     salary_list.append({'name':name,'department':department,'position':position,'salary':salary})
-    with open('data/salary.json', 'w',encoding="utf-8") as f:
+    with open('data/salary.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(salary_list))
 
     return render_template('admin.html',salary_list=salary_list)
