@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/layui.css">
+</head>
+<body>
+<div style="width: 800px;margin: 100px auto">
+    <table lay-filter="demo">
+  <thead>
+    <tr>
+      <th lay-data="{field:'name', width:100}">姓名</th>
+      <th lay-data="{field:'department', width:120, sort:true}">部门</th>
+      <th lay-data="{field:'position'}">职位</th>
+      <th lay-data="{field:'salary'}">工资</th>
+      <th lay-data="{field:'option'}">操作</th> <!-- 必须加操作列表头！！ -->
+    </tr>
+  </thead>
+<tbody>
+  {% for sal in salary_list %}
+    <tr>
+      <td>{{sal.name}}</td>
+      <td>{{ sal.department }}</td>
+      <td>{{sal.position}}</td>
+      <td>{{sal.salary}}</td>
+      <td>
+        <a href="/change/{{ sal.name }}" class="layui-btn layui-btn-sm">修改</a>
+        <a href="/delete/{{ sal.name }}" class="layui-btn layui-btn-sm layui-btn-danger">删除</a>
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+ </table>
+<a href="/add" class="layui-btn layui-btn-checked">添加员工信息</a>
+</div>
+
+<script src="/static/css/layui.js"></script>
+
+
+<script>
+//Demo
+    layui.use('form', function() {
+        var table = layui.table;
+        //转换静态表格
+        table.init('demo', {
+            height: 315 //设置高度
+            , limit: 100 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+            //支持所有基础参数
+        })
+    })
+</script>
+
+</body>
+</html>
