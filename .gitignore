@@ -1,0 +1,15 @@
+# 虚拟环境
+.venv/
+venv/
+
+# pycharm配置
+.idea/
+*.iml
+
+# python缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 日志
+*.log
